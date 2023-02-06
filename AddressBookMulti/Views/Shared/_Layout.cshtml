@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AddressBookMulti.styles.css" asp-append-version="true" />
 
-     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
+     
 
         <script src="https://kit.fontawesome.com/2c56f37d48.js" crossorigin="anonymous"></script>
         <link href="~/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="~/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="~/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -36,7 +37,7 @@
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html" style="color: white;">
+                    <a asp-action="Index" asp-controller="Home" style="color: white;">
                         <i class="fa-solid fa-d logo-default"></i>
                         <i class="fa-solid fa-r logo-default"></i>
                         <!-- <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> -->
@@ -148,7 +149,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item start active open">
-                                    <a href="index.html" class="nav-link ">
+                                    <a asp-action="Index" asp-controller="Home" class="nav-link ">
                                         <i class="icon-bar-chart"></i>
                                         <span class="title">Dashboard</span>
                                         <span class="selected"></span>
@@ -363,12 +364,10 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>*@
-
-                    <div class="container">
-                        <main role="main" class="pb-3">
-                            @RenderBody()
-                        </main>
-                    </div>
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                    
 
 
                 </div>
