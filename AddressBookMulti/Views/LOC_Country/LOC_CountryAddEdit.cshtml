@@ -1,5 +1,100 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Country Add/Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <!-- BEGIN PAGE BAR -->
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a asp-action="Index" asp-controller="Home">Home</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Country Add/Edit Page</span>
+                </li>
+            </ul>
+
+        </div>
+        <!-- END PAGE BAR -->
+        <!-- BEGIN PAGE TITLE-->
+       
+
+        <h1 class="page-title">
+            Country Add/Edit Page
+            
+        </h1>
+        <hr />
+        <br />
+
+        <div class="row">
+            <form method="post" asp-controller="LOC_Country" asp-action="Index">
+
+                    <div class="col-md-2">
+                        <span style="color: #ff0000">*</span>
+                        Country Name :-
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" placeholder="Enter Country Name" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-2">
+                        <span style="color: #ff0000">*</span>
+                        Country Code :-
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" placeholder="Enter Country Code" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+         
+                <br />
+
+                @*   <div class="row">
+                <div class="col-md-2">
+
+                Creation Date :-
+                </div>
+                <div class="col-md-3">
+                <input type="date" placeholder="Enter Creation Date" asp-for="CreationDate" class="form-control" />
+                </div>
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-2">
+
+                Modification Date :-
+                </div>
+                <div class="col-md-3">
+                <input type="date" placeholder="Enter Modification Date" asp-for="ModificationDate" class="form-control" />
+                </div>
+                </div>*@
+                <br />
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-1">
+                        <a class="btn red-mint" type="submit" value="Cancel" asp-controller="LOC_Country" asp-action="Index">
+                            Cancel
+                        </a>
+                       
+                    </div>
+
+                    <div class="col-md-1">
+
+                        <input type="submit" value="Save" class="btn green-haze p-3" />
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
