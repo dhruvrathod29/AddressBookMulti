@@ -71,7 +71,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="page_user_login_1.html">
+                                    <a href="@Url.Action("Logout", "User_Master")">
                                         <i class="icon-key"></i> Log Out
                                     </a>
                                 </li>
@@ -235,7 +235,12 @@
                                         <span class="title">Profile </span>
                                     </a>
                                 </li>
-
+                                <li class="nav-item  ">
+                                    <a asp-action="Index" asp-controller="User_Master" class="nav-link ">
+                                        <i class="icon-user"></i>
+                                        <span class="title">Log Out </span>
+                                    </a>
+                                </li>
 
                             </ul>
                         </li>

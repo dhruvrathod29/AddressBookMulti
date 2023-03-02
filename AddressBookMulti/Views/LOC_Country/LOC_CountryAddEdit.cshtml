@@ -4,6 +4,7 @@
 }
 
 
+@model LOC_CountryModel
 
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
@@ -24,63 +25,76 @@
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-       
-
-        <h1 class="page-title">
-            Country Add/Edit Page
-            
-        </h1>
-        <hr />
-        <br />
-
-        <div class="row">
-            <form method="post" asp-controller="LOC_Country" asp-action="Index">
-
-                    <div class="col-md-2">
-                        <span style="color: #ff0000">*</span>
-                        Country Name :-
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" placeholder="Enter Country Name" class="form-control" />
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="col-md-1">
-                    </div>
-                    <div class="col-md-2">
-                        <span style="color: #ff0000">*</span>
-                        Country Code :-
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" placeholder="Enter Country Code" class="form-control" />
-                        <span class="text-danger"></span>
-                    </div>
-         
-                <br />
-
-                <br />
-
-                <br/>
-
-                  
-                <div class="row removespace">
-                    <div class="col-md-5">
-                    </div>
-                    <div class="col-md-1">
-                        <a class="btn red-mint" type="submit" value="Cancel" asp-controller="LOC_Country" asp-action="Index">
-                            Cancel
-                        </a>
-                       
-                    </div>
-
-                    <div class="col-md-1">
-
-                        <input type="submit" value="Save" class="btn green-haze p-3" />
-
-                    </div>
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase">Country Add/Edit</span>
                 </div>
-            </form>
+                @*<div class="actions">
+                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                        <label class="btn btn-transparent dark btn-outline btn-circle btn-sm active">
+                           
+                            <input  type="radio" name="options" class="toggle" id="option1">Country List
+                        </label>
+                        
+                    </div>
+                </div>*@
+            </div>
+            <div class="portlet-body form">
+                <div class="row" style="padding:29px 5px 22px 5px">
+                    <form method="post" asp-controller="LOC_Country" asp-action="Save">
+                        @Html.HiddenFor(x=>x.CountryID)
+                        <div class="row" style="padding-left:22px; margin-bottom:22px">
+                            <div class="col-md-2">
+                                <span style="color: #ff0000">*</span>
+                                Country Name
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" placeholder="Enter Country Name" required asp-for="CountryName" class="form-control" />
+                                <span asp-validation-for="CountryName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #ff0000">*</span>
+                                Country Code  :-
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" placeholder="Enter Country Code" required asp-for="CountryCode" class="form-control" />
+                                <span asp-validation-for="CountryCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                       
+                        <div class="row removespace">
+                            <div class="col-md-5">
+                            </div>
+                            
+
+                            <div class="col-md-1">
+
+                                <input type="submit" value="Save" class="btn green-haze p-3" />
+
+                            </div>
+
+                            <div class="col-md-1">
+                                <a class="btn red-mint" type="submit" value="Cancel" asp-controller="LOC_Country" asp-action="Index">
+                                    Cancel
+                                </a>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+
+            </div>
 
         </div>
+
+
     </div>
     <!-- END CONTENT BODY -->
 </div>

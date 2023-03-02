@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
@@ -22,8 +23,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseSession();   
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=User_Master}/{action=Index}/{id?}");
 
 app.Run();
