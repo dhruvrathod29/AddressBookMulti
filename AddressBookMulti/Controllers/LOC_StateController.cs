@@ -23,8 +23,6 @@ namespace AddressBookMulti.Controllers
         [CheckAccess]
 
         #region Index
-
-        #region SelectAll
         public IActionResult Index()
         {
             string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
@@ -32,9 +30,24 @@ namespace AddressBookMulti.Controllers
             DataTable dt = dalLOC.dbo_PR_LOC_State_SelectAll(connectionstr);
             return View("LOC_StateList", dt);
 
+            /* DataTable dt = new DataTable(); 
+
+             SqlConnection conn = new SqlConnection(connectionstr);
+
+             conn.Open();
+
+             SqlCommand objCmd = conn.CreateCommand();
+             objCmd.CommandType = CommandType.StoredProcedure;
+             objCmd.CommandText = "PR_LOC_State_SelectAll";
+             SqlDataReader objSDR = objCmd.ExecuteReader();
+
+             dt.Load(objSDR);
+
+             conn.Close();*/
+
         }
         #endregion
-        #endregion
+
         #region Add
         public IActionResult Add(int StateID)
         {
@@ -137,8 +150,7 @@ namespace AddressBookMulti.Controllers
 
             #region Insert
 
-            /*if (ModelState.IsValid)
-            {*/
+           
                 string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
 
                 LOC_DAL dalLOC = new LOC_DAL();
@@ -163,7 +175,7 @@ namespace AddressBookMulti.Controllers
                     }
                     return RedirectToAction("Index");
                 }
-          /*  }*/
+            
 
             return RedirectToAction("Add");
 
@@ -203,6 +215,7 @@ namespace AddressBookMulti.Controllers
 
         }
         #endregion
+
 
 
 

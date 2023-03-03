@@ -26,13 +26,15 @@ namespace AddressBookMulti.Models
 
         #endregion
 
-        #region LOC_Country_SelectForDropDownModel
-        public class LOC_Country_SelectForDropDownModel
-        {
-            public int CountryID { get; set; }
-            public string CountryName { get; set; }
-        }
-        #endregion
+      
 
     }
+
+    #region LOC_Country_SelectForDropDownModel
+    public class LOC_Country_SelectForDropDownModel
+    {
+        public int CountryID { get; set; }
+        public string CountryName { get; set; }
+    }
+    #endregion
 }

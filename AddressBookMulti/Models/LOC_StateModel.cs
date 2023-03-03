@@ -3,9 +3,9 @@ using System.ComponentModel;
 
 namespace AddressBookMulti.Models
 {
+    #region LOC_StateModel
     public class LOC_StateModel
     {
-        #region LOC_StateModel
         public int? StateID { get; set; }
 
 
@@ -27,14 +27,15 @@ namespace AddressBookMulti.Models
 
         public DateTime? CreationDate { get; set; }
         public DateTime? ModificationDate { get; set; }
-        #endregion
 
-        #region LOC_State_SelectForDropDown
-        public class LOC_State_SelectForDropDownModel
-        {
-            public int StateID { get; set; }
-            public String StateName { get; set; }
-        }
-        #endregion
     }
+    #endregion
+
+    #region LOC_State_SelectForDropDown
+    public class LOC_State_SelectForDropDownModel
+    {
+        public int StateID { get; set; }
+        public String StateName { get; set; }
+    }
+    #endregion
 }

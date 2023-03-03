@@ -55,6 +55,30 @@ namespace AddressBookMulti.DAL
         }
         #endregion
 
+        #region dbo.PR_LOC_City_SelectAll
+        public DataTable dbo_PR_LOC_City_SelectAll(string conn)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(conn);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_LOC_City_SelectAll");
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+        #endregion
+
         #endregion
 
         #region LOC_Delete
@@ -87,6 +111,24 @@ namespace AddressBookMulti.DAL
                 SqlDatabase sqlDB = new SqlDatabase(conn);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_LOC_State_DeleteByPK");
                 sqlDB.AddInParameter(dbCMD, "StateID", SqlDbType.Int, StateID);
+                int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
+                return (vReturnValue == -1 ? false : true);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region PR_LOC_City_Delete
+        public bool dbo_PR_LOC_City_DeleteByPK(string conn, int CityID)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(conn);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_LOC_City_DeleteByPK");
+                sqlDB.AddInParameter(dbCMD, "CityID", SqlDbType.Int, CityID);
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return (vReturnValue == -1 ? false : true);
             }
@@ -131,7 +173,6 @@ namespace AddressBookMulti.DAL
 
         #endregion
 
-
         #region LOC_State_SelectByPK
 
         public DataTable dbo_PR_LOC_State_SelectByPK(string conn, int StateID)
@@ -159,6 +200,35 @@ namespace AddressBookMulti.DAL
         }
 
         #endregion
+
+
+        #region LOC_City_SelectByPK
+        public DataTable dbo_PR_LOC_City_SelectByPK(string conn, int CityID)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(conn);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_LOC_City_SelectByPK");
+                sqlDB.AddInParameter(dbCMD, "CityID", SqlDbType.Int, CityID);
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
+        }
+
+        #endregion
+
 
         #endregion
 
@@ -215,6 +285,35 @@ namespace AddressBookMulti.DAL
 
         #endregion
 
+        #region LOC_City_Insert
+        public bool dbo_PR_LOC_City_Insert(string str, LOC_CityModel modelLOC_City)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(str);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_LOC_City_Insert");
+                sqlDB.AddInParameter(dbCMD, "CountryID", SqlDbType.Int, modelLOC_City.CountryID);
+                sqlDB.AddInParameter(dbCMD, "StateID", SqlDbType.Int, modelLOC_City.StateID);
+                sqlDB.AddInParameter(dbCMD, "CityName", SqlDbType.NVarChar, modelLOC_City.CityName);
+                sqlDB.AddInParameter(dbCMD, "PinCode", SqlDbType.NVarChar, modelLOC_City.PinCode);
+                sqlDB.AddInParameter(dbCMD, "CreationDate", SqlDbType.DateTime, DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss"));
+                sqlDB.AddInParameter(dbCMD, "ModificationDate", SqlDbType.DateTime, DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss"));
+
+                int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
+                return (vReturnValue == -1 ? false : true);
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
+        #endregion
+
+
         #endregion
 
         #region LOC_UpdateByPK
@@ -244,6 +343,7 @@ namespace AddressBookMulti.DAL
         }
         #endregion
 
+
         #region LOC_State_UpdateByPK
         public bool dbo_PR_LOC_State_UpdateByPK(string str, LOC_StateModel modelLOC_State)
         {
@@ -267,6 +367,35 @@ namespace AddressBookMulti.DAL
                 return false;
             }
         }
+
+        #endregion
+
+        #region LOC_City_UpdateByPK
+
+        public bool dbo_PR_LOC_City_UpdateByPK(string str, LOC_CityModel modelLOC_City)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(str);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_LOC_City_UpdateByPK");
+                sqlDB.AddInParameter(dbCMD, "CityID", SqlDbType.Int, modelLOC_City.CityID);
+                sqlDB.AddInParameter(dbCMD, "StateID", SqlDbType.Int, modelLOC_City.StateID);
+                sqlDB.AddInParameter(dbCMD, "CountryID", SqlDbType.Int, modelLOC_City.CountryID);
+                sqlDB.AddInParameter(dbCMD, "CityName", SqlDbType.NVarChar, modelLOC_City.CityName);
+                sqlDB.AddInParameter(dbCMD, "PinCode", SqlDbType.NVarChar, modelLOC_City.PinCode);
+                sqlDB.AddInParameter(dbCMD, "CreationDate", SqlDbType.DateTime, DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss"));
+                sqlDB.AddInParameter(dbCMD, "ModificationDate", SqlDbType.DateTime, DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss"));
+
+                int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
+                return (vReturnValue == -1 ? false : true);
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
         #endregion
 
