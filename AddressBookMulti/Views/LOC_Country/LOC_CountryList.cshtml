@@ -21,7 +21,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Dashboard</span>
+                    <span>Country List</span>
                 </li>
             </ul>
 
@@ -72,7 +72,7 @@
                                 <td class="text-center">
                                     <form method="post"  asp-controller="LOC_Country" asp-action="Delete">
                                         <input type="hidden" name="CountryID" value="@Convert.ToInt32(dr["CountryID"])">
-                                        <button type="submit" class="btn btn-danger btn-xs" onclick="return fun1();"><i class="fa fa-close"></i></button>
+                                        <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete : @dr["CountryName"]');"><i class="fa fa-close"></i></button>
                                         <a class="btn btn-info btn-xs"  asp-controller="LOC_Country" asp-action="Add" asp-route-countryid="@Convert.ToInt32(dr["CountryID"])"><i class="fa fa-pencil"></i></a>
                                     </form>
                                 </td>

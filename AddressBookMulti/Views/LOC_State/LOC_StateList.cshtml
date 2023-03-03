@@ -21,7 +21,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Dashboard</span>
+                    <span>State List</span>
                 </li>
             </ul>
 
@@ -76,7 +76,7 @@
                                 <td class="text-center">
                                     <form method="post" asp-controller="LOC_State" asp-action="Delete">
                                         <input type="hidden" name="StateID" value="@Convert.ToInt32(dr["StateID"])">
-                                        <button type="submit" class="btn btn-danger btn-xs" onclick="return fun1();"><i class="fa fa-close"></i></button>
+                                        <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete : @dr["StateName"]');"><i class="fa fa-close"></i></button>
                                         <a class="btn btn-info btn-xs" asp-controller="LOC_State" asp-action="Add" asp-route-stateid="@Convert.ToInt32(dr["StateID"])"><i class="fa fa-pencil"></i></a>
                                     </form>
                                 </td>
