@@ -14,7 +14,7 @@ namespace MetronicAddressBook.BAL
 
             if (filterContext.HttpContext.Session.GetString("UserID") == null)
             {
-                filterContext.Result = new RedirectResult("~/User_Master/User_Master");
+                filterContext.Result = new RedirectResult("~/User_Master");
             }
         }
 

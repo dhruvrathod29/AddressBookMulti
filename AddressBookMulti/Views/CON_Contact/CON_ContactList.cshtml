@@ -1,5 +1,129 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Contact List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@using System.Data
+@model DataTable
+
+
+
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <!-- BEGIN PAGE BAR -->
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a asp-action="Index" asp-controller="Home">Home</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Contact List</span>
+                </li>
+            </ul>
+
+        </div>
+        <!-- END PAGE BAR -->
+        <!-- BEGIN PAGE TITLE-->
+
+
+
+
+        <div class="portlet light bordered margin-top-10">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase">City List</span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group btn-group-devided">
+                        <a asp-controller="CON_Contact" asp-action="Add" class="btn green btn-rounded"><i class="fa fa-plus"></i>&nbsp;Add Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body" style="overflow-x :auto">
+                <div class="pull-right">
+                    <div id="sample_1_filter" class="dataTables_filter">
+                        <label>Search Any&nbsp;<input type="text" class="form-control input-sm input-small input-inline" id="sample_1"></label>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover table-header-fixed dataTable">
+                    <thead>
+                        <tr class="">
+                            <th>Action</th>
+                            <th>Photo</th>
+
+                            <th>Contact ID</th>
+                            <th>Country Name</th>
+                            <th>State Name</th>
+                            <th>City Name</th>
+                            <th>Contact Category Name</th>
+                            <th>Contact Name</th>
+                            <th>Address</th>
+                            <th>PinCode</th>
+                            <th>Mobile No</th>
+                            <th>Alternet Contact</th>
+                            <th>Email</th>
+                            <th>BithDate</th>
+                            <th>LinkedIn</th>
+                            <th>Twitter</th>
+                            <th>Insta</th>
+                            <th>Gender</th>
+                            <th>Creation Date</th>
+                            <th>Modification Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sample_2">
+                        @foreach (DataRow dr in Model.Rows)
+                        {
+                            <tr>
+                               
+                                <td class="text-center">
+                                    <form method="post" asp-controller="CON_Contact" asp-action="Delete">
+                                        <input type="hidden" name="ContactID" value="@Convert.ToInt32(dr["ContactID"])">
+                                        <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete : @dr["ContactName"]');"><i class="fa fa-close"></i></button>
+                                        <a class="btn btn-info btn-xs" asp-controller="CON_Contact" asp-action="Add" asp-route-contactid="@Convert.ToInt32(dr["ContactID"])"><i class="fa fa-pencil"></i></a>
+                                    </form>
+                                </td>
+
+                                <td><img src="@Url.Content(dr["PhotoPath"].ToString())" alt="@dr["CountryName"]" style="height:50px; width:50px"></td>
+                                <td>@dr["ContactID"]</td>
+                                <td>@dr["CountryName"]</td>
+                                <td>@dr["StateName"]</td>
+                                <td>@dr["CityName"]</td>
+                                <td>@dr["ContactCategoryName"]</td>
+
+                                <td>@dr["ContactName"]</td>
+                                <td>@dr["Address"]</td>
+                                <td>@dr["PinCode"]</td>
+                                <td>@dr["MobileNo"]</td>
+                                <td>@dr["AlternetContact"]</td>
+                                <td>@dr["Email"]</td>
+                                <td>@Convert.ToDateTime(dr["BirthDate"]).ToString()</td>
+                                <td>@dr["LinkedIn"]</td>
+                                <td>@dr["Twitter"]</td>
+                                <td>@dr["Insta"]</td>
+                                <td>@dr["Gender"]</td>
+                                <td>@Convert.ToDateTime(dr["CreationDate"]).ToString("dd-MM-yyyy")</td>
+                                <td>@Convert.ToDateTime(dr["ModificationDate"]).ToString("dd-MM-yyyy")</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- END CONTENT BODY -->
+
+</div>
+
+
+<div class="clearfix"></div>
+
+
