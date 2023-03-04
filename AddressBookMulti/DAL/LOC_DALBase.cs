@@ -1,7 +1,9 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using System.Data.Common;
 using System.Data;
-using AddressBookMulti.Models;
+using AddressBookMulti.Areas.LOC_Country.Models;
+using AddressBookMulti.Areas.LOC_State.Models;
+using AddressBookMulti.Areas.LOC_City.Models;
 
 namespace AddressBookMulti.DAL
 {

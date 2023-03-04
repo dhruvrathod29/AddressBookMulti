@@ -1,4 +1,5 @@
-﻿using AddressBookMulti.Models;
+﻿using AddressBookMulti.Areas.CON_Contact.Models;
+using AddressBookMulti.Areas.MST_ContactCategory.Models;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using System.Data.Common;
 using System.Data;

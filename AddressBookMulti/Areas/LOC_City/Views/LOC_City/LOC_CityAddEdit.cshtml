@@ -1,0 +1,173 @@
+﻿@{
+    ViewData["Title"] = "City Add/Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model AddressBookMulti.Areas.LOC_City.Models.LOC_CityModel
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <!-- BEGIN PAGE BAR -->
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a asp-action="Index" asp-controller="Home">Home</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>City Add/Edit Page</span>
+                </li>
+            </ul>
+
+        </div>
+        <!-- END PAGE BAR -->
+        <!-- BEGIN PAGE TITLE-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase">City Add/Edit</span>
+                </div>
+                @*<div class="actions">
+                <div class="btn-group btn-group-devided" data-toggle="buttons">
+                <label class="btn btn-transparent dark btn-outline btn-circle btn-sm active">
+
+                <input  type="radio" name="options" class="toggle" id="option1">Country List
+                </label>
+
+                </div>
+                </div>*@
+            </div>
+            <div class="portlet-body form">
+                <div class="row" style="padding:29px 5px 22px 5px">
+                    <form method="post" asp-area="LOC_City" asp-controller="LOC_City" asp-action="Save">
+                        @Html.HiddenFor(x=>x.CityID)
+                        <div class="row" style="padding-left:22px; margin-bottom:22px">
+                            <div class="col-md-2">
+                                <span style="color: #ff0000">*</span>
+                                Country :-
+                            </div>
+                            <div class="col-md-3">
+                                <select asp-for="CountryID" asp-items="@(new SelectList(ViewBag.CountryList,"CountryID","CountryName"))" class="form-control" onchange="stateChange()">
+                                    <option value="">Select Country</option>
+                                </select>
+                                <span asp-validation-for="CountryID" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #ff0000">*</span>
+                                State :-
+                            </div>
+                            <div class="col-md-3">
+                                <select asp-for="StateID" asp-items="@(new SelectList(ViewBag.StateList,"StateID","StateName"))" class="form-control">
+                                    <option value="">Select State</option>
+                                </select>
+                                <span asp-validation-for="StateID" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-left:22px; margin-bottom:22px">
+                            <div class="col-md-2">
+                                <span style="color: #ff0000">*</span>
+                                City Name :-
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" placeholder="Enter City Name" asp-for="CityName" class="form-control" />
+                                <span asp-validation-for="CityName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #ff0000">*</span>
+                                Pin Code :-
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" placeholder="Enter Pin Code" asp-for="PinCode" class="form-control" />
+                                <span asp-validation-for="PinCode" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="row removespace">
+                            <div class="col-md-5">
+                            </div>
+
+
+                            <div class="col-md-1">
+
+                                <input type="submit" value="Save" class="btn green-haze p-3" />
+
+                            </div>
+
+                            <div class="col-md-1">
+                                <a class="btn red-mint" type="submit" value="Cancel" asp-area="LOC_City" asp-controller="LOC_City" asp-action="Index">
+                                    Cancel
+                                </a>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+
+
+@section Scripts{
+    <script>
+        function stateChange() {
+            var CountryID = $("#CountryID").val();
+            if (CountryID !== "") {
+                $("#StateID").empty();
+                $("#StateID").append($("<option></option>").val("").html("Select State"));
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    contentType: "application/json; charset=utf-8",
+                    url: "@Url.Action("DropDownByCountry","LOC_City")" + "?CountryID=" + CountryID,
+                    dataType: "json",
+                    success: function (Result) {
+                        console.log(Result);
+                        $.each(Result,
+                            function (key, value) {
+                                $("#StateID").append($("<option></option>").val(value.stateID).html(value.stateName));
+                            });
+                    },
+                    error: function (r) {
+                        alert("Error while loading DropDown");
+                    }
+
+                });
+            }
+            else {
+                $("#StateID").empty();
+                $("#StateID").append($("<option></option>").val("").html("Select State"));
+            }
+        }
+
+
+        $(window).on('load', function () {
+            console.log('All assets are loaded')
+        })
+        function abc() {
+            alert("Error while change");
+        }
+
+    </script>
+}
