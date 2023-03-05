@@ -38,20 +38,7 @@ namespace AddressBookMulti.Areas.CON_Contact.Controllers
             DataTable dt = dalCON.dbo_PR_CON_Contact_SelectAll(connectionstr);
 
             return View("CON_ContactList", dt);
-            /*  DataTable dt = new DataTable();
-              SqlConnection conn = new SqlConnection(connectionstr);
-
-              conn.Open();
-
-              SqlCommand objCmd = conn.CreateCommand();
-              objCmd.CommandType = CommandType.StoredProcedure;
-              objCmd.CommandText = "PR_CON_Contact_SelectAll";
-              SqlDataReader objSDR = objCmd.ExecuteReader();
-              dt.Load(objSDR);
-
-              conn.Close();
-
-              return View("CON_ContactList", dt);*/
+           
             #endregion
         }
         #endregion
