@@ -4,6 +4,7 @@ using System.Data;
 using AddressBookMulti.Areas.LOC_Country.Models;
 using AddressBookMulti.Areas.LOC_State.Models;
 using AddressBookMulti.Areas.LOC_City.Models;
+using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace AddressBookMulti.DAL
 {
@@ -397,6 +398,103 @@ namespace AddressBookMulti.DAL
                 return false;
             }
         }
+
+
+        #endregion
+
+        #endregion
+
+
+        #region LOC_Serach
+
+        #region LOC_Country_Filter
+
+        public DataTable dbo_PR_LOC_Country_FilterCountryNameAndCode(string str, string CountryName, string CountryCode)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(str);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_LOC_Country_FilterByCountryNameAndCode");
+                sqlDB.AddInParameter(dbCMD, "CountryName", SqlDbType.NVarChar, CountryName);
+                sqlDB.AddInParameter(dbCMD, "CountryCode", SqlDbType.NVarChar, CountryCode);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+
+
+        #endregion
+
+        #region LOC_State_Filter
+
+        public DataTable dbo_PR_LOC_State_FilterCountryNameAndCode(string str, string CountryName, string StateName, string StateCode)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(str);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_LOC_State_FilterByStateNameAndCode");
+                sqlDB.AddInParameter(dbCMD, "CountryName", SqlDbType.NVarChar, CountryName);
+                sqlDB.AddInParameter(dbCMD, "StateName", SqlDbType.NVarChar, StateName);
+                sqlDB.AddInParameter(dbCMD, "StateCode", SqlDbType.NVarChar, StateCode);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+
+
+        #endregion
+
+        #region LOC_City_Filter
+
+        public DataTable dbo_PR_LOC_City_FilterCountryNameAndCode(string str, string StateName, string CityName, string PinCode)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(str);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_LOC_City_FilterByCityNameAndCode");
+                sqlDB.AddInParameter(dbCMD, "StateName", SqlDbType.NVarChar, StateName);
+                sqlDB.AddInParameter(dbCMD, "CityName", SqlDbType.NVarChar, CityName);
+                sqlDB.AddInParameter(dbCMD, "PinCode", SqlDbType.NVarChar, PinCode);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
 
 
         #endregion

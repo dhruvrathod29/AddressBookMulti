@@ -45,11 +45,19 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <div class="pull-right">
-                    <div id="sample_1_filter" class="dataTables_filter">
+                <div class="pull-left">
+
+                    <form method="post" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="Filter">
+                        <label>Filter: </label>&nbsp;
+                        <input type="search" name="CountryName" class="form-control input-sm input-small input-inline" placeholder="Country Name" value="" />
+                        <input type="search" name="CountryCode" class="form-control input-sm input-small input-inline" placeholder="Country Code" value="" />
+                        <button type="submit" class="btn btn-sm btn-success">GO</button>
+                    </form>
+                   @* <div id="sample_1_filter" class="dataTables_filter">
                         <label>Search Any&nbsp;<input type="text" class="form-control input-sm input-small input-inline" id="sample_1"></label>
-                    </div>
+                    </div>*@
                 </div>
+                
                 <table class="table table-striped table-bordered table-hover table-header-fixed dataTable">
                     <thead>
                         <tr class="">

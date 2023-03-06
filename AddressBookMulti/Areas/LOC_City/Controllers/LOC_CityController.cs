@@ -268,12 +268,20 @@ namespace AddressBookMulti.Areas.LOC_City.Controllers
         }
         #endregion
 
-        /*public IActionResult LOC_CityList()
+        #region Filter Records
+        public IActionResult Filter(LOC_CityModel modelLOC_City)
         {
+            string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
 
 
-            return View();
-        }*/
+            LOC_DAL dalLOC = new LOC_DAL();
+            DataTable dt = dalLOC.dbo_PR_LOC_City_FilterCountryNameAndCode(connectionstr, modelLOC_City.StateName, modelLOC_City.CityName, modelLOC_City.PinCode);
+
+
+            return View("LOC_CityList", dt);
+
+        }
+        #endregion
 
     }
 }

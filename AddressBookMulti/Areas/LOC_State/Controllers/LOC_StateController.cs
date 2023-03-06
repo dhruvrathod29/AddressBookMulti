@@ -222,7 +222,20 @@ namespace AddressBookMulti.Areas.LOC_State.Controllers
         #endregion
 
 
+        #region Filter Records
+        public IActionResult Filter(LOC_StateModel modelLOC_State)
+        {
+            string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
 
+
+            LOC_DAL dalLOC = new LOC_DAL();
+            DataTable dt = dalLOC.dbo_PR_LOC_State_FilterCountryNameAndCode(connectionstr, modelLOC_State.CountryName, modelLOC_State.StateName, modelLOC_State.StateCode);
+
+
+            return View("LOC_StateList", dt);
+
+        }
+        #endregion
 
     }
 }

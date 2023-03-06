@@ -174,6 +174,20 @@ namespace AddressBookMulti.Areas.LOC_Country.Controllers
         }
         #endregion
 
+        #region Filter Records
+        public IActionResult Filter(LOC_CountryModel modelLOC_Country)
+        {
+            string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
+
+
+            LOC_DAL dalLOC = new LOC_DAL();
+            DataTable dt = dalLOC.dbo_PR_LOC_Country_FilterCountryNameAndCode(connectionstr, modelLOC_Country.CountryName, modelLOC_Country.CountryCode);
+          
+            
+            return View("LOC_CountryList", dt);
+
+        }
+        #endregion
 
     }
 }
