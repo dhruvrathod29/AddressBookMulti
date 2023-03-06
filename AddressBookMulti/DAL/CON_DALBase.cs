@@ -310,5 +310,75 @@ namespace AddressBookMulti.DAL
 
 
         #endregion
+
+        #region CON_Search
+
+        #region CON_Contact
+
+
+        public DataTable PR_CON_Contact_FilterByContactNameAndMobileNo(string str, string ContactName,string MobileNo)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(str);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_CON_Contact_FilterByContactNameAndMobileNo");
+                sqlDB.AddInParameter(dbCMD, "ContactName", SqlDbType.NVarChar, ContactName);
+                sqlDB.AddInParameter(dbCMD, "MobileNo", SqlDbType.NVarChar, MobileNo);
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+
+
+
+        #endregion
+
+        #region MST_ContactCategory
+
+
+        public DataTable PR_MST_ContactCategory_FilterByContactCategoryName(string str, string ContactCategoryName)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(str);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_MST_ContactCategory_FilterByContactCategoryName");
+                sqlDB.AddInParameter(dbCMD, "ContactCategoryName", SqlDbType.NVarChar, ContactCategoryName);
+               
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+
+
+       
+        #endregion
+
+
+        #endregion
     }
 }

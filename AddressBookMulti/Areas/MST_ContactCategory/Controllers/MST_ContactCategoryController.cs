@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using MetronicAddressBook.BAL;
+using AddressBookMulti.Areas.LOC_Country.Models;
 
 namespace AddressBookMulti.Areas.MST_ContactCategory.Controllers
 {
@@ -22,8 +23,6 @@ namespace AddressBookMulti.Areas.MST_ContactCategory.Controllers
             Configuration = _configuration;
         }
         #endregion
-
-   
 
         #region Index
         public IActionResult Index()
@@ -213,11 +212,20 @@ namespace AddressBookMulti.Areas.MST_ContactCategory.Controllers
         }
         #endregion
 
-        /*public IActionResult MST_ContactCategoryList()
+        #region Filter Records
+        public IActionResult Filter(MST_ContactCategoryModel modelMST_ContactCategory)
         {
+            string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
 
 
-            return View();
-        }*/
+            CON_DAL dalMST = new CON_DAL();
+            DataTable dt = dalMST.PR_MST_ContactCategory_FilterByContactCategoryName(connectionstr, modelMST_ContactCategory.ContactCategoryName);
+
+
+            return View("MST_ContactCategoryList", dt);
+
+        }
+        #endregion
+
     }
 }

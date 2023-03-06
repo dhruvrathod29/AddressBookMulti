@@ -45,10 +45,17 @@
                 </div>
             </div>
             <div class="portlet-body" style="overflow-x :auto">
-                <div class="pull-right">
-                    <div id="sample_1_filter" class="dataTables_filter">
+                <div class="pull-left">
+                    <form method="post" asp-area="CON_Contact" asp-controller="CON_Contact" asp-action="Filter">
+                        <label>Filter: </label>&nbsp;
+                        <input type="search" name="ContactName" class="form-control input-sm input-small input-inline" placeholder="Contact Name" value="" />
+                        <input type="search" name="MobileNo" class="form-control input-sm input-small input-inline" placeholder="Mobile No" value="" />
+
+                        <button type="submit" class="btn btn-sm btn-success">GO</button>
+                    </form>
+                    @*<div id="sample_1_filter" class="dataTables_filter">
                         <label>Search Any&nbsp;<input type="text" class="form-control input-sm input-small input-inline" id="sample_1"></label>
-                    </div>
+                    </div>*@
                 </div>
                 <table class="table table-striped table-bordered table-hover table-header-fixed dataTable">
                     <thead>
@@ -56,7 +63,7 @@
                             <th>Action</th>
                             <th>Photo</th>
 
-                            <th>Contact ID</th>
+                            
                             <th>Country Name</th>
                             <th>State Name</th>
                             <th>City Name</th>
@@ -90,7 +97,7 @@
                                 </td>
 
                                 <td><img src="@Url.Content(dr["PhotoPath"].ToString())" alt="@dr["CountryName"]" style="height:50px; width:50px"></td>
-                                <td>@dr["ContactID"]</td>
+                              
                                 <td>@dr["CountryName"]</td>
                                 <td>@dr["StateName"]</td>
                                 <td>@dr["CityName"]</td>
@@ -102,7 +109,7 @@
                                 <td>@dr["MobileNo"]</td>
                                 <td>@dr["AlternetContact"]</td>
                                 <td>@dr["Email"]</td>
-                                <td>@Convert.ToDateTime(dr["BirthDate"]).ToString()</td>
+                                <td>@Convert.ToDateTime(dr["BirthDate"]).ToString("dd-MM-yyyy")</td>
                                 <td>@dr["LinkedIn"]</td>
                                 <td>@dr["Twitter"]</td>
                                 <td>@dr["Insta"]</td>

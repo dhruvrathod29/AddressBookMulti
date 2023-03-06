@@ -14,76 +14,7 @@ namespace AddressBookMulti.Controllers
         {
             this.Configuration = _configuration;
         }
-        /*
-                public IActionResult Index()
-                {
-                    return View("_Layout_Login");
-                }
-
-                [HttpPost]
-                public IActionResult Login(User_MasterModel modelUser_Master)
-                {
-                    string connstr = this.Configuration.GetConnectionString("myConnectionString");
-                    string error = null;
-
-                    if (modelUser_Master.UserName == null)
-                    {
-                        error += "User Name is required";
-                    }
-                    if (modelUser_Master.Password == null)
-                    {
-                        error += "<br/> Password is required";
-
-                    }
-                    if (error != null)
-                    {
-                        TempData["Error"] = error;
-                        return RedirectToAction("User_Master");
-
-                    }
-                    else
-                    {
-                        Master_DAL dal = new Master_DAL();
-                        DataTable dt = dal.dbo_PR_User_Master_SelectByUserNamePassword(connstr, modelUser_Master.UserName, modelUser_Master.Password);
-                        if (dt.Rows.Count > 0)
-                        {
-                            foreach (DataRow dr in dt.Rows)
-                            {
-                                HttpContext.Session.SetString("UserID", dr["UserID"].ToString());
-                                HttpContext.Session.SetString("UserName", dr["UserName"].ToString());
-                                HttpContext.Session.SetString("Password", dr["Password"].ToString());
-                                HttpContext.Session.SetString("Password", dr["DisplayName"].ToString());
-
-                                HttpContext.Session.SetString("Password", dr["Email"].ToString());
-                                HttpContext.Session.SetString("Password", dr["MobileNo"].ToString());
-
-                                break;
-
-                            }
-                        }
-                        else
-                        {
-                            TempData["Error"] = "User Name or Password is invalid!";
-                            return RedirectToAction("_Layout_Login");
-                        }
-                        if (HttpContext.Session.GetString("UserName") != null && HttpContext.Session.GetString("Password") != null)
-                        {
-                            return RedirectToAction("Index", "Login");
-                        }
-
-                    }
-
-                    return RedirectToAction("Index");
-                }
-
-                public IActionResult Logout()
-                {
-                    HttpContext.Session.Clear();
-                    return RedirectToAction("User_Master");
-                }
-
-        */
-
+       
 
         public IActionResult Index()
         {

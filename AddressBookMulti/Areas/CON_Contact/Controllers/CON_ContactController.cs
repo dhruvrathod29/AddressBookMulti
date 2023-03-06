@@ -428,10 +428,21 @@ namespace AddressBookMulti.Areas.CON_Contact.Controllers
         }
         #endregion
 
-        /* public IActionResult CON_ContactList()
-         {
 
-             return View();
-         }*/
+        #region Filter Records
+        public IActionResult Filter(CON_ContactModel modelCON_Contact)
+        {
+            string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
+
+
+            CON_DAL dalMST = new CON_DAL();
+            DataTable dt = dalMST.PR_CON_Contact_FilterByContactNameAndMobileNo(connectionstr, modelCON_Contact.ContactName, modelCON_Contact.MobileNo);
+
+
+            return View("CON_ContactList", dt);
+
+        }
+        #endregion
+
     }
 }
