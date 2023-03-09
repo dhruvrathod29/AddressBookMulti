@@ -12,14 +12,15 @@ namespace AddressBookMulti.Areas.LOC_Country.Controllers
 
     public class LOC_CountryController : Controller
     {
+        #region DAL Object
+        LOC_DAL dalLOC = new LOC_DAL();
 
-        #region Configuration
+        #endregion
 
-        private IConfiguration Configuration;
-        public LOC_CountryController(IConfiguration _configuration)
-
+        #region Constructor
+        public LOC_CountryController()
         {
-            Configuration = _configuration;
+            
         }
         #endregion
 
@@ -28,14 +29,11 @@ namespace AddressBookMulti.Areas.LOC_Country.Controllers
         #region Select All
         public IActionResult Index()
         {
-
-            string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
             LOC_DAL dalLOC = new LOC_DAL();
-            DataTable dt = dalLOC.dbo_PR_LOC_Country_SelectAll(connectionstr);
+            DataTable dt = dalLOC.dbo_PR_LOC_Country_SelectAll();
 
             return View("LOC_CountryList", dt);
-
-            
+   
         }
         #endregion
 
@@ -47,10 +45,8 @@ namespace AddressBookMulti.Areas.LOC_Country.Controllers
             #region Select By PK
             if (CountryID != null)
             {
-                string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
-                LOC_DAL dalLOC = new LOC_DAL();
-
-                DataTable dt = dalLOC.dbo_PR_LOC_Country_SelectByPK(connectionstr, CountryID);
+              
+                DataTable dt = dalLOC.dbo_PR_LOC_Country_SelectByPK(CountryID);
                 if (dt.Rows.Count > 0)
                 {
                     LOC_CountryModel model = new LOC_CountryModel();
@@ -82,15 +78,11 @@ namespace AddressBookMulti.Areas.LOC_Country.Controllers
         {
             if (ModelState.IsValid)
             {
-                string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
-
-                LOC_DAL dalLOC = new LOC_DAL();
-
-
+                
                 if (modelLOC_Country.CountryID == null)
                 {
 
-                    if (Convert.ToBoolean(dalLOC.dbo_PR_LOC_Country_Insert(connectionstr, modelLOC_Country)))
+                    if (Convert.ToBoolean(dalLOC.dbo_PR_LOC_Country_Insert(modelLOC_Country)))
                     {
                         TempData["CountryInsertMessage"] = "Record inserted successfully";
 
@@ -98,7 +90,7 @@ namespace AddressBookMulti.Areas.LOC_Country.Controllers
                 }
                 else
                 {
-                    if (Convert.ToBoolean(dalLOC.dbo_PR_LOC_Country_UpdateByPK(connectionstr, modelLOC_Country)))
+                    if (Convert.ToBoolean(dalLOC.dbo_PR_LOC_Country_UpdateByPK(modelLOC_Country)))
                     {
 
                         TempData["CountryUpdateMessage"] = "Record Update Successfully";
@@ -116,33 +108,12 @@ namespace AddressBookMulti.Areas.LOC_Country.Controllers
         #region Delete
         public IActionResult Delete(int CountryID)
         {
-            string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
-
-            LOC_DAL dalLOC = new LOC_DAL();
-
-            if (Convert.ToBoolean(dalLOC.dbo_PR_LOC_Country_DeleteByPK(connectionstr, CountryID)))
+           
+            if (Convert.ToBoolean(dalLOC.dbo_PR_LOC_Country_DeleteByPK(CountryID)))
             {
                 return RedirectToAction("Index");
             }
             return View("Index");
-
-
-            /*DataTable dt = new DataTable();
-            SqlConnection conn = new SqlConnection(connectionstr);
-
-            conn.Open();
-
-            SqlCommand objCmd = conn.CreateCommand();
-            objCmd.CommandType = CommandType.StoredProcedure;
-            objCmd.CommandText = "PR_LOC_Country_DeleteByPK";
-           
-            objCmd.Parameters.AddWithValue("@CountryID", CountryID);
-
-            objCmd.ExecuteNonQuery();
-
-            
-            conn.Close();*/
-
 
         }
         #endregion
@@ -150,11 +121,8 @@ namespace AddressBookMulti.Areas.LOC_Country.Controllers
         #region Filter Records
         public IActionResult Filter(LOC_CountryModel modelLOC_Country)
         {
-            string connectionstr = this.Configuration.GetConnectionString("myConnectionStrings");
-
-
-            LOC_DAL dalLOC = new LOC_DAL();
-            DataTable dt = dalLOC.dbo_PR_LOC_Country_FilterCountryNameAndCode(connectionstr, modelLOC_Country.CountryName, modelLOC_Country.CountryCode);
+           
+            DataTable dt = dalLOC.dbo_PR_LOC_Country_FilterCountryNameAndCode(modelLOC_Country.CountryName, modelLOC_Country.CountryCode);
           
             
             return View("LOC_CountryList", dt);
