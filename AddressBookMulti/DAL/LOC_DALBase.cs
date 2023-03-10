@@ -403,7 +403,6 @@ namespace AddressBookMulti.DAL
 
         #endregion
 
-
         #region LOC_Serach
 
         #region LOC_Country_Filter
@@ -527,7 +526,7 @@ namespace AddressBookMulti.DAL
 
         #endregion
 
-        #region LOC_CityDropDown
+        #region LOC_StateDropDown
 
         public DataTable dbo_PR_LOC_State_SelectByDropdownList(int CountryID)
         {
