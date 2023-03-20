@@ -42,73 +42,49 @@
                 </div>*@
             </div>
             <div class="portlet-body form">
-                <div class="row" style="padding:29px 5px 22px 5px">
-                    <form method="post" asp-area="LOC_State" asp-controller="LOC_State" asp-action="Save">
-                        @Html.HiddenFor(x=>x.StateID)
-                        <div class="row" style="padding-left:22px; margin-bottom:22px">
-                            <div class="col-md-2">
-                                <span style="color: #ff0000">*</span>
-                                Country :-
-                            </div>
-                            <div class="col-md-3">
+                <h4 class="font-green-sharp">@TempData["EventCategoryInsertMsg"]</h4>
+                <form class="form-horizontal" role="form" method="post" asp-area="LOC_State" asp-controller="LOC_State" asp-action="Save">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @Html.HiddenFor(x=>x.StateID)
+                    <div class="form-body">
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><span class="text-danger">*</span>Country</label>
+                            <div class="col-md-9">
                                 <select asp-for="CountryID" asp-items="@(new SelectList(ViewBag.CountryList,"CountryID","CountryName"))" class="form-control">
                                     <option value="">Select Country</option>
                                 </select>
                                 <span asp-validation-for="CountryID" class="text-danger"></span>
                             </div>
-                            <div class="col-md-1">
-                            </div>
-                            <div class="col-md-2">
-                                <span style="color: #ff0000">*</span>
-                                State Name:-
-                            </div>
-                            <div class="col-md-3">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><span class="text-danger">*</span>State Name</label>
+                            <div class="col-md-9">
                                 <input type="text" placeholder="Enter State Name" asp-for="StateName" class="form-control" />
                                 <span asp-validation-for="StateName" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <div class="row" style="padding-left:22px; margin-bottom:22px">
-                            <div class="col-md-2">
-                                <span style="color: #ff0000">*</span>
-                                State Code :-
-                            </div>
-                            <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><span class="text-danger">*</span>State Code</label>
+                            <div class="col-md-9">
                                 <input type="text" placeholder="Enter State Code" asp-for="StateCode" class="form-control" />
                                 <span asp-validation-for="StateCode" class="text-danger"></span>
                             </div>
-                            <div class="col-md-1">
-                            </div>
-                            
                         </div>
 
+                    </div>
 
-
-
-                        <div class="row removespace">
-                            <div class="col-md-5">
-                            </div>
-
-
-                            <div class="col-md-1">
-
-                                <input type="submit" value="Save" class="btn green-haze p-3" />
-
-                            </div>
-
-                            <div class="col-md-1">
-                                <a class="btn red-mint" type="submit" value="Cancel" asp-area="LOC_State" asp-controller="LOC_State" asp-action="Index">
-                                    Cancel
-                                </a>
-
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <input type="submit" class="btn green" value="Save" />
+                                <a class="btn default" asp-area="LOC_State" asp-controller="LOC_State" asp-action="Index">Cancel</a>
                             </div>
                         </div>
-                    </form>
-
-                </div>
-
-
-
+                    </div>
+                </form>
             </div>
 
         </div>
