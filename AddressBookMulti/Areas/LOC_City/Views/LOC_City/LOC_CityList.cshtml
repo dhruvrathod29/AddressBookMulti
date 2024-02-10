@@ -28,9 +28,9 @@
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-       
 
-       
+
+
 
         <div class="portlet light bordered margin-top-10">
             <div class="portlet-title">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="actions">
                     <div class="btn-group btn-group-devided">
-                        <a asp-area="LOC_City" asp-controller="LOC_City" asp-action="Add" class="btn green btn-rounded"><i class="fa fa-plus"></i>&nbsp;Add City</a>
+                        <a asp-area="LOC_City" asp-controller="LOC_City" asp-action="Add" onclick="btnAddClick()" class="btn green btn-rounded"><i class="fa fa-plus"></i>&nbsp;Add City</a>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="pull-left">
                     <form method="post" asp-area="LOC_City" asp-controller="LOC_City" asp-action="Filter">
                         <label>Filter: </label>&nbsp;
-                        
+
                         <input type="search" name="StateName" class="form-control input-sm input-small input-inline" placeholder="State Name" value="" />
                         <input type="search" name="CityName" class="form-control input-sm input-small input-inline" placeholder="City Name" value="" />
                         <input type="search" name="PinCode" class="form-control input-sm input-small input-inline" placeholder="Pin Code" value="" />
@@ -58,7 +58,7 @@
                 <table class="table table-striped table-bordered table-hover table-header-fixed dataTable">
                     <thead>
                         <tr class="">
-                            
+
                             <th>CountryName</th>
 
                             <th>State Name</th>
@@ -73,7 +73,7 @@
                         @foreach (DataRow dr in Model.Rows)
                         {
                             <tr>
-                               
+
                                 <td>@dr["CountryName"]</td>
                                 <td>@dr["StateName"]</td>
                                 <td>@dr["CityName"]</td>
@@ -104,4 +104,14 @@
 
 <div class="clearfix"></div>
 
-    
+@section Scripts{
+
+    <script>
+
+        function btnAddClick() {
+            debugger;
+            console.log('btnAddClick')
+        }
+    </script>
+
+}

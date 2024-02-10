@@ -35,6 +35,7 @@ namespace AddressBookMulti.Areas.LOC_City.Controllers
 
             DataTable dt = dalLOC.dbo_PR_LOC_City_SelectAll();
             return View("LOC_CityList", dt);
+            
 
             #endregion
         }

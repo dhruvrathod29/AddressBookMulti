@@ -71,7 +71,7 @@ namespace AddressBookMulti.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new {Area =" "});
         }
 
         public IActionResult Logout()
