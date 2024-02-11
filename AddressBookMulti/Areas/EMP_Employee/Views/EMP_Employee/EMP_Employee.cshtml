@@ -66,18 +66,29 @@
                             <div class="portlet-body form">
                                 <form role="form" method="post" id="employeeForm">
                                     <div class="form-body">
-                                        <div class="form-group form-md-line-input form-md-floating-label has-success">
-                                            <input type="text" class="form-control" id="Name">
-                                            <label for="form_control_1">Employee Name</label>
+                                        <input type="hidden" id="EmployeeID" />
+                                        <div id="empName" class="form-group form-md-line-input">
+                                            <input type="text" class="form-control" name="name" id="Name" placeholder="Enter your name">
+                                            <label for="form_control_1">
+                                                Name
+                                                <span class="required">*</span>
+                                            </label>
+                                            <span class="help-block">Enter your name...</span>
                                         </div>
-                                        <div class="form-group form-md-line-input form-md-floating-label has-success">
-                                            <input type="text" class="form-control" id="Address">
-                                            <label for="form_control_1">Address</label>
+                                        <div id="empAddress" class="form-group form-md-line-input">
+                                            <input type="text" class="form-control" name="Address" id="Address" placeholder="Enter your Address">
+                                            <label for="form_control_1">
+                                                Address
+                                                <span class="required">*</span>
+                                            </label>
+                                            <span class="help-block">Enter your Address...</span>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn dark btn-outline" data-dismiss="modal" onclick="clearControl()">Close</button>
-                                        <input type="button" class="btn green" value="Save changes" onclick="AddEmployee()" />
+                                        <input id="btnSaveEmployee" type="button" class="btn green" value="Save changes" onclick="btnSave()" />
+                                        <input id="btnUpdateEmployee" type="button" class="btn green" value="Update" style="display:none" onclick="btnUpdate()" />
+
                                     </div>
                                 </form>
 
