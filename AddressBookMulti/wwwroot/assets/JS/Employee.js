@@ -43,6 +43,7 @@ function OnSuccess(response) {
 }
 
 $('#btnAddEmployee').click(function () {
+    debugger;
     clearControl();
     $('#EmployeeModel').modal('show');
     $('#btnSaveEmployee').show();
@@ -59,7 +60,7 @@ function clearControl() {
 function btnSave() {
 
     debugger;
-   
+
 
 
 
